@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/code
+    working_directory: ~/code/CircleCIApp
     docker:
       - image: circleci/android:api-25-alpha
     environment:
@@ -9,20 +9,20 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "CircleCIApp/build.gradle" }}-{{ checksum  "CircleCIApp/app/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-          command: sudo chmod +x ./CircleCIApp/gradlew
+          command: sudo chmod +x ./gradlew
       - run:
           name: Download Dependencies
-          command: ./CircleCIApp/gradlew androidDependencies
+          command: ./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "CircleCIApp/build.gradle" }}-{{ checksum  "CircleCIApp/app/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Run Build
-          command: ./CircleCIApp/gradlew assembleDebug
+          command: ./gradlew assembleDebug
       - store_artifacts:
-          path: CircleCIApp/app/build/outputs/apk/debug/
+          path: app/build/outputs/apk/debug/
           destination: artifact-file
