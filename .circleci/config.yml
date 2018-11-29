@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Change Directory
-          command: cd CircleCIApp
+          command: cd /home/circleci/code/CircleCIApp/
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
