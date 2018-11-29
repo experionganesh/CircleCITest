@@ -7,7 +7,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
-      - checkout
+      - checkout:
           path: ~/CircleCIApp
       - restore_cache:
           key: jars-{{ checksum "CircleCIApp/build.gradle" }}-{{ checksum  "CircleCIApp/app/build.gradle" }}
