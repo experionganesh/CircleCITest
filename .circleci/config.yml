@@ -22,7 +22,7 @@ jobs:
           key: jars-{{ checksum "CircleCIApp/build.gradle" }}-{{ checksum  "CircleCIApp/app/build.gradle" }}
       - run:
           name: Run Build
-          command: ./CircleCIApp/gradlew assembleDebug
+          command: cd CircleCIApp;./gradlew assembleDebug
       - store_artifacts:
           path: CircleCIApp/app/build/outputs/apk/debug/
           destination: artifact-file
