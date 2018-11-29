@@ -15,8 +15,7 @@ jobs:
           command: sudo chmod +x ./CircleCIApp/gradlew
       - run:
           name: Download Dependencies
-          command: cd CircleCIApp
-          command: ./gradlew androidDependencies
+          command: cd CircleCIApp;./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
